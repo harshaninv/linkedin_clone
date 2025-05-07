@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/viewmodels/auth_viewmodel.dart';
-import 'package:linkedin_clone/views/home/home_page.dart';
 import 'package:linkedin_clone/views/auth/login_page.dart';
 import 'package:linkedin_clone/views/auth/signup_page.dart';
+import 'package:linkedin_clone/widgets/bottomTabBar/fab_tabs.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/login': (context) => LoginPage(),
           '/signup': (context) => SignupPage(),
-          '/home': (context) => HomePage(),
+          '/home': (context) => FabTabs(),
         },
       ),
     );

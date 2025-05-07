@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/viewmodels/auth_viewmodel.dart';
-import 'package:linkedin_clone/views/home_page.dart';
-import 'package:linkedin_clone/views/login_page.dart';
-import 'package:linkedin_clone/views/signup_page.dart';
+import 'package:linkedin_clone/views/home/home_page.dart';
+import 'package:linkedin_clone/views/auth/login_page.dart';
+import 'package:linkedin_clone/views/auth/signup_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {

@@ -33,4 +33,13 @@ class AuthViewmodel extends ChangeNotifier {
     notifyListeners();
     return success;
   }
+
+  // password visibility toggle
+  bool _isPasswordVisible = false;
+  bool get isPasswordVisible => _isPasswordVisible;
+
+  void togglePasswordVisibility() {
+    _isPasswordVisible = !_isPasswordVisible;
+    notifyListeners();
+  }
 }

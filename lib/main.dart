@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/viewmodels/auth_viewmodel.dart';
+import 'package:linkedin_clone/viewmodels/home_viewmodel.dart';
+import 'package:linkedin_clone/viewmodels/profile_viewmodel.dart';
 import 'package:linkedin_clone/views/auth/login_page.dart';
 import 'package:linkedin_clone/views/auth/signup_page.dart';
 import 'package:linkedin_clone/views/profile/profile_page.dart';
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewmodel()),
+        ChangeNotifierProvider(create: (_) => HomeViewmodel()),
+        ChangeNotifierProvider(create: (_) => ProfileViewmodel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

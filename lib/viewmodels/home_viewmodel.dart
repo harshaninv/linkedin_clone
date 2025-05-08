@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:linkedin_clone/models/post_model.dart';
 import 'package:linkedin_clone/models/story_model.dart';
 import 'package:linkedin_clone/utils/constants.dart';
+import 'package:provider/provider.dart';
 
 class HomeViewmodel extends ChangeNotifier {
   List<PostModel> _posts = [];
   List<StoryModel> _stories = [];
+  bool _isLoading = false;
 
   List<PostModel> get posts => _posts;
   List<StoryModel> get stories => _stories;
+  bool get isLoading => _isLoading;
 
-  void fetchPosts() {
+  Future<void> fetchPosts() async {
+    _isLoading = true;
+    notifyListeners();
+    // Simulate a network delay
+    await Future.delayed(const Duration(seconds: 1));
     _posts = [
       PostModel(
         userName: 'Chandler Bing',
@@ -35,10 +42,15 @@ class HomeViewmodel extends ChangeNotifier {
         postImage: Constants.postImage2
       ),
     ];
+    _isLoading = false;
     notifyListeners();
   }
 
-  void fetchStories() {
+  Future<void> fetchStories() async{
+    _isLoading = true;
+    notifyListeners();
+    // Simulate a network delay
+    await Future.delayed(const Duration(seconds: 1));
     _stories = [
       StoryModel(
         userName: 'Asa Butterfield',
@@ -66,6 +78,7 @@ class HomeViewmodel extends ChangeNotifier {
         imageUrl: Constants.storyImage1,
       ),
     ];
+    _isLoading = false;
     notifyListeners();
   }
 }

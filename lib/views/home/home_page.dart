@@ -33,8 +33,8 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.grey),
-            onPressed: () {}, // Placeholder for notifications
+            icon: const Icon(Icons.notifications, color: Colors.blueGrey),
+            onPressed: () {}, 
           ),
         ],
       ),

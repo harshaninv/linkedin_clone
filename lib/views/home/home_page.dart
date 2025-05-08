@@ -3,17 +3,28 @@ import 'package:linkedin_clone/utils/constants.dart';
 import 'package:linkedin_clone/viewmodels/home_viewmodel.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/post_card.dart';
-import '../../utils/text_theme.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Fetch posts and stories when the widget is initialized usse asynchronous method
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final homeViewModel = Provider.of<HomeViewmodel>(context, listen: false);
+      homeViewModel.fetchPosts();
+      homeViewModel.fetchStories();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final homeViewModel = Provider.of<HomeViewmodel>(context, listen: false);
-    homeViewModel.fetchPosts();
-    homeViewModel.fetchStories();
-
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade50,
       appBar: AppBar(
@@ -34,66 +45,71 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.blueGrey),
-            onPressed: () {}, 
+            onPressed: () {},
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Search Bar Section
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 8.0,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: const TextField(
-                          enabled: false, // Placeholder for search
-                          decoration: InputDecoration(
-                            hintText: "Try 'Android Dev'",
-                            hintStyle: TextStyle(color: Colors.grey),
-                            prefixIcon: Icon(
-                              Icons.search_rounded,
-                              color: Colors.blueGrey,
-                              size: 30,
+      body: Consumer<HomeViewmodel>(
+        builder: (context, viewModel, child) {
+          if (viewModel.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                // Search Bar Section
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: const TextField(
+                              enabled: false, // Placeholder for search
+                              decoration: InputDecoration(
+                                hintText: "Try 'Android Dev'",
+                                hintStyle: TextStyle(color: Colors.grey),
+                                prefixIcon: Icon(
+                                  Icons.search_rounded,
+                                  color: Colors.blueGrey,
+                                  size: 30,
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.qr_code_scanner,
+                                  color: Colors.blueGrey,
+                                  size: 30,
+                                ),
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 10,
+                                ),
+                              ),
                             ),
-                            suffixIcon: Icon(
-                              Icons.qr_code_scanner,
-                              color: Colors.blueGrey,
-                              size: 30,
-                            ),
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(vertical: 10),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            // Stories Section
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 8.0,
-              ),
-              child: SizedBox(
-                height: 100,
-                child: Consumer<HomeViewmodel>(
-                  builder: (context, viewModel, child) {
-                    return ListView.separated(
+                ),
+                // Stories Section
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  child: SizedBox(
+                    height: 100,
+                    child: ListView.separated(
                       separatorBuilder: (BuildContext context, int index) {
                         return SizedBox(width: 10);
                       },
@@ -151,16 +167,12 @@ class HomePage extends StatelessWidget {
                           ),
                         );
                       },
-                    );
-                  },
+                    ),
+                  ),
                 ),
-              ),
-            ),
 
-            // Posts Section
-            Consumer<HomeViewmodel>(
-              builder: (context, viewModel, child) {
-                return ListView.builder(
+                // Posts Section
+                ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: viewModel.posts.length,
@@ -168,11 +180,11 @@ class HomePage extends StatelessWidget {
                     final post = viewModel.posts[index];
                     return PostCard(post: post);
                   },
-                );
-              },
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

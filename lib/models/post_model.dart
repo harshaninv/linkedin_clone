@@ -6,6 +6,8 @@ class PostModel {
   final String jobTitle;
   final String likes;
   final String comments;
+  final String userImage; 
+  final String postImage;
 
   PostModel({
     required this.userName,
@@ -15,5 +17,7 @@ class PostModel {
     required this.jobTitle,
     required this.likes,
     required this.comments,
+    required this.userImage,
+    this.postImage = '',
   });
 }

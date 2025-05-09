@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:linkedin_clone/models/post_model.dart';
 import 'package:linkedin_clone/models/story_model.dart';
 import 'package:linkedin_clone/utils/constants.dart';
-import 'package:provider/provider.dart';
 
 class HomeViewmodel extends ChangeNotifier {
   List<PostModel> _posts = [];

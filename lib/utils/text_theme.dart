@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LinkedInTextTheme {
   // Title: Bold, large text for headings (e.g., page titles)

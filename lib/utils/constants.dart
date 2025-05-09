@@ -12,4 +12,8 @@ class Constants {
 
   static const String postImage1 = 'assets/images/post1.png';
   static const String postImage2 = 'assets/images/post2.png';
+
+  static const String coverImage1 = 'assets/images/coverphoto.png';
+  static const String coverImage2 = 'assets/images/coverphotoasa.png';
+  static const String coverImage3 = 'assets/images/coverphotoasa1.png';
 }// logo image from assets/images/logo.png

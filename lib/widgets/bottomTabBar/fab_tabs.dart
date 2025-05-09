@@ -3,7 +3,6 @@ import 'package:linkedin_clone/views/home/home_page.dart';
 import 'package:linkedin_clone/views/jobs/jobs_page.dart';
 import 'package:linkedin_clone/views/myConnection/connections_page.dart';
 import 'package:linkedin_clone/views/notification/notifications_page.dart';
-import 'package:provider/provider.dart'; 
 
 class FabTabs extends StatefulWidget {
   const FabTabs({super.key});

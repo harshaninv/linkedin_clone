@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:linkedin_clone/utils/constants.dart';
 import 'package:linkedin_clone/viewmodels/profile_viewmodel.dart';
+import 'package:linkedin_clone/widgets/profile/profile_scrollable_cards.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/profile/profile_header.dart';
 import '../../widgets/profile/profile_analytics.dart';
-import '../../widgets/profile/profile_about.dart';
-import '../../widgets/profile/profile_skills.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -31,7 +29,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade50,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
@@ -40,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Navigator.pop(context);
           },
         ),
-        title: Image.asset(Constants.logoImage, height: 25),
+        // title: Image.asset(Constants.logoImage, height: 25),
         centerTitle: true,
         actions: [
           IconButton(
@@ -62,9 +60,8 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               children: [
                 ProfileHeader(profile: viewModel.profile!),
+                ProfileScrollableCards(),
                 ProfileAnalytics(profile: viewModel.profile!),
-                ProfileAbout(profile: viewModel.profile!),
-                ProfileSkills(profile: viewModel.profile!),
               ],
             ),
           );

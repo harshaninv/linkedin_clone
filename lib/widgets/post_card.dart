@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:linkedin_clone/utils/constants.dart';
 import '../models/post_model.dart';
 import '../utils/text_theme.dart';
 

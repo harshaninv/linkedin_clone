@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 class SignupPage extends StatelessWidget {
   SignupPage({super.key});
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +30,20 @@ class SignupPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             CustomTextField(
-              controller: _emailController,
+              controller: emailController,
               label: 'Email',
             ),
             const SizedBox(height: 20),
             CustomTextField(
-              controller: _passwordController,
+              controller: passwordController,
               label: 'Password(6 characters minimum)',
               isPassword: true,
+              initialPasswordVisibilityToggle: authViewModel.isPasswordVisible,
+              onPasswordVisibilityToggle: () {
+                authViewModel.togglePasswordVisibility();
+              },
             ),
             const SizedBox(height: 20),
-            // i want add hyperlink text embedded in the existing text's only some words - Terms of Use, Privacy Policy, and Cookie Policy. of full pargraph 'By clicling Accept and Register, you agree to the Terms of Use, the Privacy Policy, and Cookie Policy LinkedIn.'
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
@@ -82,14 +85,25 @@ class SignupPage extends StatelessWidget {
                     text: 'Accept and Register',
                     onPressed: () async {
                       bool success = await authViewModel.signUp(
-                        _emailController.text,
-                        _passwordController.text,
+                        emailController.text,
+                        passwordController.text,
                       );
+                      // guard with mounted check
+                      if (!context.mounted) return;
                       if (success) {
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/login');
+                        emailController.clear();
+                        passwordController.clear();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Signup successful. You can login now.'),
+                          ),
+                        );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Sign Up Failed, Try Again')),
+                          const SnackBar(
+                            content: Text('Signup failed. Check credentials.'),
+                          ),
                         );
                       }
                     },

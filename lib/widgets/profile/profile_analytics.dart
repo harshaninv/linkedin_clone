@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/models/profile_model.dart';
 import 'package:linkedin_clone/utils/text_theme.dart';
 
 class ProfileAnalytics extends StatelessWidget {
-  final Map<String, dynamic> profile;
+  final ProfileModel profile;
 
   const ProfileAnalytics({super.key, required this.profile});
 
@@ -74,7 +75,7 @@ class ProfileAnalytics extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${profile['viewCount']}',
+                          '${profile.viewCount}',
                           style: LinkedInTextTheme.hyperlink.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -95,7 +96,7 @@ class ProfileAnalytics extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${profile['postViewCount']}',
+                          '${profile.postViewCount}',
                           style: LinkedInTextTheme.hyperlink.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -116,7 +117,7 @@ class ProfileAnalytics extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${profile['searchAppearances']}',
+                          '${profile.searchAppearances}',
                           style: LinkedInTextTheme.hyperlink.copyWith(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,

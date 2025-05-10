@@ -1,45 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/models/user_model.dart';
 import 'package:linkedin_clone/services/auth_service.dart';
+import 'package:linkedin_clone/utils/validator.dart';
 
-class AuthViewmodel extends ChangeNotifier {
+class AuthViewmodel with ChangeNotifier {
+  bool isLoading = false;
+  bool isPasswordVisible = false;
+  UserModel? loggedInUser;
   final AuthService _authService = AuthService();
-  UserModel? _user;
-  bool _isloading = false;
 
-  UserModel? get user => _user;
-  bool get isLoading => _isloading;
-
-  Future<bool> signUp(String email, String password) async {
-    _isloading = true;
+  void togglePasswordVisibility() {
+    isPasswordVisible = !isPasswordVisible;
     notifyListeners();
-    bool success = await _authService.signUp(email, password);
-    if (success) {
-      _user = _authService.getCurrentUser();
-    }
-    _isloading = false;
-    notifyListeners();
-    return success;
   }
 
   Future<bool> login(String email, String password) async {
-    _isloading = true;
+    isLoading = true;
     notifyListeners();
+
+    // Validate inputs
+    final emailError = Validator.validateEmail(email);
+    final passwordError = Validator.validatePassword(password);
+    if (emailError != null || passwordError != null) {
+      isLoading = false;
+      notifyListeners();
+      return false;
+    }
+
+    // Attempt login
     bool success = await _authService.login(email, password);
     if (success) {
-      _user = _authService.getCurrentUser();
+      loggedInUser = _authService.getCurrentUser();
     }
-    _isloading = false;
+
+    isLoading = false;
     notifyListeners();
     return success;
   }
 
-  // password visibility toggle
-  bool _isPasswordVisible = false;
-  bool get isPasswordVisible => _isPasswordVisible;
-
-  void togglePasswordVisibility() {
-    _isPasswordVisible = !_isPasswordVisible;
+  Future<bool> signUp(String email, String password) async {
+    isLoading = true;
     notifyListeners();
+
+    // Validate inputs
+    final emailError = Validator.validateEmail(email);
+    final passwordError = Validator.validatePassword(password);
+    if (emailError != null || passwordError != null) {
+      isLoading = false;
+      notifyListeners();
+      return false;
+    }
+
+    // Attempt signup
+    bool success = await _authService.signUp(email, password);
+    if (success) {
+      loggedInUser = _authService.getCurrentUser();
+    }
+
+    isLoading = false;
+    notifyListeners();
+    return success;
   }
 }

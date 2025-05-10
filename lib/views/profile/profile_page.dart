@@ -17,7 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     // Fetch profile data when the widget is initialized
-    WidgetsBinding.instance.addPostFrameCallback((_) async{
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       final profileViewModel = Provider.of<ProfileViewmodel>(
         context,
         listen: false,
@@ -38,16 +38,31 @@ class _ProfilePageState extends State<ProfilePage> {
             Navigator.pop(context);
           },
         ),
-        // title: Image.asset(Constants.logoImage, height: 25),
+
         centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.share, color: Colors.blueGrey),
             onPressed: () {},
           ),
-          IconButton(
+          PopupMenuButton<String>(
             icon: const Icon(Icons.more_horiz, color: Colors.blueGrey),
-            onPressed: () {},
+            onSelected: (value) {
+              if (value == 'logout') {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/login',
+                  (Route<dynamic> route) => false,
+                );
+              }
+            },
+            itemBuilder:
+                (BuildContext context) => [
+                  const PopupMenuItem<String>(
+                    value: 'logout',
+                    child: Text('Logout'),
+                  ),
+                ],
           ),
         ],
       ),
@@ -56,12 +71,13 @@ class _ProfilePageState extends State<ProfilePage> {
           if (viewModel.isLoading || viewModel.profile == null) {
             return const Center(child: CircularProgressIndicator());
           }
+          final profile = viewModel.profile!;
           return SingleChildScrollView(
             child: Column(
               children: [
-                ProfileHeader(profile: viewModel.profile!),
-                ProfileScrollableCards(),
-                ProfileAnalytics(profile: viewModel.profile!),
+                ProfileHeader(profile: profile),
+                const ProfileScrollableCards(),
+                ProfileAnalytics(profile: profile),
               ],
             ),
           );

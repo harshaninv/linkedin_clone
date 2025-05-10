@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/models/profile_model.dart';
 import 'package:linkedin_clone/utils/constants.dart';
 import 'package:linkedin_clone/utils/text_theme.dart';
 
 class ProfileHeader extends StatelessWidget {
-  final Map<String, dynamic> profile;
+  final ProfileModel profile;
 
   const ProfileHeader({super.key, required this.profile});
 
@@ -40,7 +41,7 @@ class ProfileHeader extends StatelessWidget {
                         CircleAvatar(
                           radius: 50,
                           backgroundColor: Colors.blueGrey.shade100,
-                          foregroundImage: AssetImage(profile['profileImage']),
+                          foregroundImage: AssetImage(profile.profileImage),
                         ),
                         Positioned(
                           bottom: 0,
@@ -88,26 +89,26 @@ class ProfileHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                profile['name'],
+                profile.name,
                 style: LinkedInTextTheme.subtitle.copyWith(
                   fontWeight: FontWeight.w600,
                   fontSize: 20,
                 ),
               ),
               Text(
-                profile['headline'],
+                profile.headline,
                 style: LinkedInTextTheme.subtitle.copyWith(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
               ),
-              Text(profile['description'], style: LinkedInTextTheme.paragraph),
+              Text(profile.description, style: LinkedInTextTheme.paragraph),
               const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    '${profile['followers']} Followers',
+                    '${profile.followers} Followers',
                     style: LinkedInTextTheme.hyperlink.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -120,7 +121,7 @@ class ProfileHeader extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '+ ${profile['connections']} Connections',
+                    '+ ${profile.connections} Connections',
                     style: LinkedInTextTheme.hyperlink.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

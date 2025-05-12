@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/utils/constants.dart';
 import 'package:linkedin_clone/viewmodels/profile_viewmodel.dart';
 import 'package:linkedin_clone/widgets/profile/profile_scrollable_cards.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.blueGrey),
+          icon: const Icon(Icons.arrow_back, color: Constants.secondaryLight),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -42,11 +43,11 @@ class _ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.share, color: Colors.blueGrey),
+            icon: const Icon(Icons.share, color: Constants.secondaryLight),
             onPressed: () {},
           ),
           PopupMenuButton<String>(
-            icon: const Icon(Icons.more_horiz, color: Colors.blueGrey),
+            icon: const Icon(Icons.more_horiz, color: Constants.secondaryLight),
             onSelected: (value) {
               if (value == 'logout') {
                 Navigator.pushNamedAndRemoveUntil(

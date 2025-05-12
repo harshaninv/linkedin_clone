@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/utils/constants.dart';
 import '../models/post_model.dart';
 import '../utils/text_theme.dart';
 
@@ -21,7 +22,7 @@ class PostCard extends StatelessWidget {
                 // User Image
                 CircleAvatar(
                   radius: 28,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Constants.textColorLight,
                   foregroundImage: AssetImage(post.userImage),
                 ),
                 const SizedBox(width: 10),
@@ -36,14 +37,14 @@ class PostCard extends StatelessWidget {
                             post.userName,
                             style: LinkedInTextTheme.subtitle.copyWith(
                               fontWeight: FontWeight.w600,
-                              color: const Color.fromARGB(255, 12, 56, 92)
+                              color: Constants.primaryColor,
                             ),
                           ),
                           const SizedBox(width: 5),
                           Text(
                             '• ${post.connectionLevel}',
                             style: LinkedInTextTheme.paragraph.copyWith(
-                              color: const Color.fromARGB(255, 12, 56, 92)
+                              color: Constants.primaryColor,
                             ),
                           ),
                         ],
@@ -52,37 +53,37 @@ class PostCard extends StatelessWidget {
                         post.jobTitle,
                         style: LinkedInTextTheme.paragraph.copyWith(
                           fontWeight: FontWeight.w500,
-                          color: const Color.fromARGB(150, 12, 56, 92)
+                          color: Constants.primaryColor,
                         ),
                       ),
                       Text(
                         post.timeAgo,
                         style: LinkedInTextTheme.paragraph.copyWith(
-                          color: const Color.fromARGB(150, 12, 56, 92)
+                          color: Constants.primaryColor,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const Icon(Icons.more_vert, color: Color.fromARGB(255, 83, 108, 121)),
+                const Icon(Icons.more_vert, color: Constants.secondaryLight),
               ],
             ),
             const SizedBox(height: 10),
             // Post Content
-            Text(post.content, 
-            style: LinkedInTextTheme.paragraph
-                .copyWith(color: const Color.fromARGB(255, 7, 58, 65))),
             Text(
-              'see more',
-              style: LinkedInTextTheme.hyperlink,
+              post.content,
+              style: LinkedInTextTheme.paragraph.copyWith(
+                color: Constants.secondaryDark,
+              ),
             ),
+            Text('see more', style: LinkedInTextTheme.hyperlink),
 
             const SizedBox(height: 10),
 
             // Post Image
             if (post.postImage.isNotEmpty) // Check if postImage is not empty
               _buildPostImage(post.postImage),
-            
+
             const SizedBox(height: 10),
 
             // Interaction Buttons
@@ -91,13 +92,17 @@ class PostCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.groups_2, size: 20, color: Color.fromARGB(255, 1, 100, 150)),
+                    const Icon(
+                      Icons.groups_2,
+                      size: 20,
+                      color: Constants.secondary,
+                    ),
                     const SizedBox(width: 5),
                     Text(
                       post.likes,
                       style: LinkedInTextTheme.paragraph.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: const Color.fromARGB(255, 1, 100, 150),
+                        color: Constants.secondary,
                       ),
                     ),
                   ],
@@ -106,7 +111,7 @@ class PostCard extends StatelessWidget {
                   '${post.comments} comments',
                   style: LinkedInTextTheme.paragraph.copyWith(
                     fontWeight: FontWeight.w500,
-                    color: const Color.fromARGB(255, 1, 100, 150),
+                    color: Constants.secondary,
                   ),
                 ),
               ],
@@ -125,7 +130,7 @@ class PostCard extends StatelessWidget {
                       child: Icon(
                         Icons.thumb_up,
                         size: 20,
-                        color: Colors.blueGrey,
+                        color: Constants.secondaryLight,
                       ),
                     ),
                     Container(
@@ -133,7 +138,7 @@ class PostCard extends StatelessWidget {
                       child: Icon(
                         Icons.messenger_rounded,
                         size: 20,
-                        color: Colors.blueGrey,
+                        color: Constants.secondaryLight,
                       ),
                     ),
                     Container(
@@ -141,7 +146,7 @@ class PostCard extends StatelessWidget {
                       child: Icon(
                         Icons.share,
                         size: 20,
-                        color: Colors.blueGrey,
+                        color: Constants.secondaryLight,
                       ),
                     ),
                   ],
@@ -149,7 +154,11 @@ class PostCard extends StatelessWidget {
 
                 Container(
                   margin: const EdgeInsets.only(right: 10, left: 20),
-                  child: Icon(Icons.bookmark, size: 20, color: Colors.blueGrey),
+                  child: Icon(
+                    Icons.bookmark,
+                    size: 20,
+                    color: Constants.secondaryLight,
+                  ),
                 ),
               ],
             ),

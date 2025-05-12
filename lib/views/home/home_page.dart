@@ -44,7 +44,10 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.blueGrey),
+            icon: const Icon(
+              Icons.notifications,
+              color: Constants.secondaryLight,
+            ),
             onPressed: () {},
           ),
         ],
@@ -81,12 +84,12 @@ class _HomePageState extends State<HomePage> {
                                 hintStyle: TextStyle(color: Colors.grey),
                                 prefixIcon: Icon(
                                   Icons.search_rounded,
-                                  color: Colors.blueGrey,
+                                  color: Constants.secondaryLight,
                                   size: 30,
                                 ),
                                 suffixIcon: Icon(
                                   Icons.qr_code_scanner,
-                                  color: Colors.blueGrey,
+                                  color: Constants.secondaryLight,
                                   size: 30,
                                 ),
                                 border: InputBorder.none,
@@ -129,13 +132,13 @@ class _HomePageState extends State<HomePage> {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: Colors.blue,
+                                    color: Constants.secondary,
                                     width: 2,
                                   ),
                                 ),
                                 child: CircleAvatar(
                                   radius: 30,
-                                  backgroundColor: Colors.blueGrey.shade100,
+                                  backgroundColor: Constants.secondaryLight,
                                   foregroundImage: AssetImage(
                                     story.imageUrl,
                                   ), // Use image from StoryModel
@@ -150,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                                     height: 30,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Colors.blue,
+                                      color: Constants.secondary,
                                       border: Border.all(
                                         color: Colors.white,
                                         width: 2,

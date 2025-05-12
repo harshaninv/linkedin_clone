@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/models/profile_model.dart';
+import 'package:linkedin_clone/utils/constants.dart';
 import 'package:linkedin_clone/utils/text_theme.dart';
 
 class ProfileAnalytics extends StatelessWidget {
@@ -31,14 +32,12 @@ class ProfileAnalytics extends StatelessWidget {
                       style: LinkedInTextTheme.subtitle.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
                       ),
                     ),
                     Text(
                       'Private to you',
                       style: LinkedInTextTheme.paragraph.copyWith(
                         fontSize: 12,
-                        color: Colors.black54,
                       ),
                     ),
                   ],
@@ -52,7 +51,6 @@ class ProfileAnalytics extends StatelessWidget {
                       style: LinkedInTextTheme.subtitle.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black38,
                       ),
                     ),
                   ],
@@ -85,7 +83,6 @@ class ProfileAnalytics extends StatelessWidget {
                           'Who viewed your profile',
                           style: LinkedInTextTheme.paragraph.copyWith(
                             fontSize: 12,
-                            color: Colors.black54,
                           ),
                         ),
                       ],
@@ -106,7 +103,6 @@ class ProfileAnalytics extends StatelessWidget {
                           'Post views',
                           style: LinkedInTextTheme.paragraph.copyWith(
                             fontSize: 12,
-                            color: Colors.black54,
                           ),
                         ),
                       ],
@@ -127,7 +123,6 @@ class ProfileAnalytics extends StatelessWidget {
                           'Search appearances',
                           style: LinkedInTextTheme.paragraph.copyWith(
                             fontSize: 12,
-                            color: Colors.black54,
                           ),
                         ),
                       ],
@@ -164,7 +159,6 @@ class ProfileAnalytics extends StatelessWidget {
                             'Creator mode highlights content on your profile and helps you get discovered by potential followers.',
                             style: LinkedInTextTheme.paragraph.copyWith(
                               fontSize: 12,
-                              color: Colors.black87,
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,

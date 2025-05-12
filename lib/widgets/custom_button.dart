@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/utils/constants.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -10,17 +11,17 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF0077B5),
+        backgroundColor: Constants.secondary, // LinkedIn blue color
         // set button width to full width of parent
         minimumSize: const Size(double.infinity, 50),
-        padding: const EdgeInsets.symmetric( vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       ),
       onPressed: onPressed,
       child: Text(
         text,
         style: const TextStyle(
-          color: Colors.white,
+          color: Constants.textColorLight,
           fontSize: 16,
           fontWeight: FontWeight.w600, // Common bold style for auth buttons
         ),

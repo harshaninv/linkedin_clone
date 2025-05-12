@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/utils/constants.dart';
 import 'package:linkedin_clone/utils/text_theme.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -40,7 +41,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     if (widget.controller != oldWidget.controller) {
       _effectiveController = widget.controller ?? TextEditingController();
     }
-    if (widget.initialPasswordVisibilityToggle != oldWidget.initialPasswordVisibilityToggle) {
+    if (widget.initialPasswordVisibilityToggle !=
+        oldWidget.initialPasswordVisibilityToggle) {
       setState(() {
         _isPasswordVisible = widget.initialPasswordVisibilityToggle ?? false;
       });
@@ -65,27 +67,32 @@ class _CustomTextFieldState extends State<CustomTextField> {
         labelText: widget.label,
         labelStyle: const TextStyle(
           fontSize: 14,
-          fontWeight: FontWeight.w400, // Common label style for auth text fields
-          color: Colors.grey,
+          fontWeight:
+              FontWeight.w400, // Common label style for auth text fields
+          color: Constants.secondaryLight,
         ),
         border: const OutlineInputBorder(),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        suffixIcon: widget.isPassword
-            ? TextButton.icon(
-                label: Text(
-                  _isPasswordVisible ? 'Hide' : 'Show',
-                  style: LinkedInTextTheme.hyperlink,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _isPasswordVisible = !_isPasswordVisible;
-                  });
-                  if (widget.onPasswordVisibilityToggle != null) {
-                    widget.onPasswordVisibilityToggle!();
-                  }
-                },
-              )
-            : null,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 10,
+        ),
+        suffixIcon:
+            widget.isPassword
+                ? TextButton.icon(
+                  label: Text(
+                    _isPasswordVisible ? 'Hide' : 'Show',
+                    style: LinkedInTextTheme.hyperlink,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                    if (widget.onPasswordVisibilityToggle != null) {
+                      widget.onPasswordVisibilityToggle!();
+                    }
+                  },
+                )
+                : null,
       ),
     );
   }

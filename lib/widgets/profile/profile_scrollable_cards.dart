@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/utils/constants.dart';
 import 'package:linkedin_clone/utils/text_theme.dart';
 
 class ProfileScrollableCards extends StatelessWidget {
@@ -79,7 +80,7 @@ class ProfileScrollableCards extends StatelessWidget {
                       style: LinkedInTextTheme.hyperlink.copyWith(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
-                        color: const Color.fromARGB(255, 33, 194, 243),
+                        color: Constants.secondary,
                       ),
                     )
                   ],

@@ -23,16 +23,10 @@ class SignupPage extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                'Sign up',
-                style: LinkedInTextTheme.title,
-              ),
+              child: Text('Sign up', style: LinkedInTextTheme.title),
             ),
             const SizedBox(height: 20),
-            CustomTextField(
-              controller: emailController,
-              label: 'Email',
-            ),
+            CustomTextField(controller: emailController, label: 'Email'),
             const SizedBox(height: 20),
             CustomTextField(
               controller: passwordController,
@@ -49,29 +43,37 @@ class SignupPage extends StatelessWidget {
               text: TextSpan(
                 style: LinkedInTextTheme.paragraph,
                 children: [
-                  const TextSpan(text: 'By clicking Accept and Register, you agree to the '),
+                  const TextSpan(
+                    text: 'By clicking Accept and Register, you agree to the ',
+                  ),
                   TextSpan(
                     text: 'Terms of Use',
                     style: LinkedInTextTheme.hyperlink,
-                    recognizer: TapGestureRecognizer()..onTap = () {
-                      // Handle Terms of Use link tap
-                    },
+                    recognizer:
+                        TapGestureRecognizer()
+                          ..onTap = () {
+                            // Handle Terms of Use link tap
+                          },
                   ),
                   const TextSpan(text: ', the '),
                   TextSpan(
                     text: 'Privacy Policy',
                     style: LinkedInTextTheme.hyperlink,
-                    recognizer: TapGestureRecognizer()..onTap = () {
-                      // Handle Privacy Policy link tap
-                    },
+                    recognizer:
+                        TapGestureRecognizer()
+                          ..onTap = () {
+                            // Handle Privacy Policy link tap
+                          },
                   ),
                   const TextSpan(text: ', and '),
                   TextSpan(
                     text: 'Cookie Policy',
                     style: LinkedInTextTheme.hyperlink,
-                    recognizer: TapGestureRecognizer()..onTap = () {
-                      // Handle Cookie Policy link tap
-                    },
+                    recognizer:
+                        TapGestureRecognizer()
+                          ..onTap = () {
+                            // Handle Cookie Policy link tap
+                          },
                   ),
                   const TextSpan(text: ' LinkedIn.'),
                 ],
@@ -82,35 +84,41 @@ class SignupPage extends StatelessWidget {
             authViewModel.isLoading
                 ? const CircularProgressIndicator()
                 : CustomButton(
-                    text: 'Accept and Register',
-                    onPressed: () async {
-                      bool success = await authViewModel.signUp(
-                        emailController.text,
-                        passwordController.text,
+                  text: 'Accept and Register',
+                  onPressed: () async {
+                    bool success = await authViewModel.signUp(
+                      emailController.text,
+                      passwordController.text,
+                    );
+                    // guard with mounted check
+                    if (!context.mounted) return;
+                    if (success) {
+                      Navigator.pushReplacementNamed(context, '/login');
+                      emailController.clear();
+                      passwordController.clear();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Signup successful. You can login now.',
+                          ),
+                        ),
                       );
-                      // guard with mounted check
-                      if (!context.mounted) return;
-                      if (success) {
-                        Navigator.pushReplacementNamed(context, '/login');
-                        emailController.clear();
-                        passwordController.clear();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Signup successful. You can login now.'),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Signup failed. Check credentials.'),
-                          ),
-                        );
-                      }
-                    },
-                  ),
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Signup failed. Check credentials.'),
+                        ),
+                      );
+                    }
+                  },
+                ),
             TextButton(
-              onPressed: () => Navigator.pushReplacementNamed(context, '/login'),
-              child: const Text('Already have an account? Login', style: LinkedInTextTheme.hyperlink,),
+              onPressed:
+                  () => Navigator.pushReplacementNamed(context, '/login'),
+              child: const Text(
+                'Already have an account? Login',
+                style: LinkedInTextTheme.hyperlink,
+              ),
             ),
           ],
         ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/models/profile_model.dart';
-import 'package:linkedin_clone/utils/constants.dart';
 import 'package:linkedin_clone/utils/text_theme.dart';
 
 class ProfileAnalytics extends StatelessWidget {

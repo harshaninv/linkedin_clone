@@ -51,7 +51,7 @@ class ProfileHeader extends StatelessWidget {
                             height: 25,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.blue,
+                              color: Constants.secondary,
                               border: Border.all(color: Colors.white, width: 2),
                             ),
                             child: const Icon(
@@ -72,7 +72,7 @@ class ProfileHeader extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: IconButton(
                   icon: const Icon(Icons.edit, color: Colors.white, size: 30),
-                  highlightColor: Colors.blue,
+                  highlightColor: Constants.secondary,
                   onPressed: () {
                     // Handle edit action
                   },
@@ -116,7 +116,7 @@ class ProfileHeader extends StatelessWidget {
                   const Text(
                     "  .  ",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Constants.textColor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -138,7 +138,7 @@ class ProfileHeader extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF0077B5), // LinkedIn blue
+                        backgroundColor: Constants.secondary, // LinkedIn blue
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -173,7 +173,7 @@ class ProfileHeader extends StatelessWidget {
                     ),
                     child: const Icon(
                       Icons.more_horiz,
-                      color: Colors.blueGrey,
+                      color: Constants.secondaryLight,
                       size: 20,
                     ),
                   ),
